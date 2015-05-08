@@ -18,15 +18,15 @@ if (env.DATABASE_URL) {
             password: dbAuth && dbAuth[1],
             name: dbUrl.path.substring(1)
         },
-        drivers = {
+        driver = ({
             mysql2: 'mysql'
-        };
+        }[db.driver]) || db.driver;
 
-    switch (db.driver) {
+    switch (driver) {
         case 'mysql':
         case 'postgres':
             database = {
-                client: drivers[db.driver] || db.driver,
+                client: driver,
                 connection: {
                     host: db.host,
                     user: db.user,
