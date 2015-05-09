@@ -106,7 +106,9 @@ if (env.MAIL_DRIVER) {
             throw new Error('Unknown mail driver "' + env.MAIL_DRIVER + '"');
     }
 } else {
-    mail = {};
+    mail = {
+        // Default mail configuration, nothing...
+    };
 }
 
 // Configure the from address (mail config)
