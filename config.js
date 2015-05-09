@@ -54,20 +54,20 @@ if (env.DATABASE_URL) {
 // Turn off database debug mode
 database.debug = false;
 
-config = {};
-
-// Configure the current site (using the NODE_ENV environment variable)
-// Falling back to `development` if none is set (which is the default ghost environment)
-
-config[env.NODE_ENV || 'development'] = {
-    url: env.SITE_URL || 'http://my-ghost-blog.com',
-    mail: {},
-    database: database,
-    server: {
-        // Host to be passed to node's `net.Server#listen()`
-        host: '0.0.0.0',
-        // Port to be passed to node's `net.Server#listen()`, for iisnode set this to `process.env.PORT`
-        port: env.PORT
+config = {
+    // ### Production
+    // When running Ghost in the wild, use the production environment
+    // Configure your URL and mail settings here
+    production: {
+        url: env.SITE_URL || 'http://my-ghost-blog.com',
+        mail: {},
+        database: database,
+        server: {
+            // Host to be passed to node's `net.Server#listen()`
+            host: '0.0.0.0',
+            // Port to be passed to node's `net.Server#listen()`, for iisnode set this to `process.env.PORT`
+            port: env.PORT
+        }
     }
 };
 
