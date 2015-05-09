@@ -7,9 +7,14 @@ var fs = require('fs-extra'),
 
 fs.stat(contentPath, function (err) {
     if (err) {
-        fs.copy(ghostContentPath, contentPath, function (err) {
-            if (err) throw new Error('Failed to copy ghost content folder. ' + err);
-            start();
+        fs.readdir(contentPath, function (err, files) {
+            if (err) throw new Error('Unable to read from content folder.');
+            if (files.length) return start();
+
+            fs.copy(ghostContentPath, contentPath, function (err) {
+                if (err) throw new Error('Failed to copy ghost content folder. ' + err);
+                start();
+            });
         });
     } else {
         start();
