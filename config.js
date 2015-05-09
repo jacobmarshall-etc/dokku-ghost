@@ -13,7 +13,8 @@ if (env.DATABASE_URL) {
         dbAuth = dbUrl.auth && dbUrl.auth.split(':'),
         db = {
             driver: dbUrl.protocol.slice(0, -1),
-            host: dbUrl.host,
+            host: dbUrl.hostname,
+            port: dbUrl.port,
             user: dbAuth && dbAuth[0],
             password: dbAuth && dbAuth[1],
             name: dbUrl.path.substring(1)
@@ -29,6 +30,7 @@ if (env.DATABASE_URL) {
                 client: driver,
                 connection: {
                     host: db.host,
+                    port: db.port,
                     user: db.user,
                     password: db.password,
                     database: db.name,
