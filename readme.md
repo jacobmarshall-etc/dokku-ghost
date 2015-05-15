@@ -43,3 +43,45 @@ dokku config:set ghost-blog NODE_ENV=production
 ```
 dokku config:set ghost-blog SITE_URL=http://example.com
 ```
+
+#### Email Setup
+
+Remember to set a from address... (regardless of the driver you choose)
+
+```
+dokku config:set ghost-blog MAIL_FROM=ghost@example.com
+```
+
+**Mailgun**
+
+```
+dokku config:set ghost-blog MAIL_DRIVER=mailgun
+dokku config:set ghost-blog MAIL_USER=ghost@example.com
+dokku config:set ghost-blog MAIL_PASSWORD=(the mailgun password)
+```
+
+**SES**
+
+```
+dokku config:set ghost-blog MAIL_DRIVER=ses
+dokku config:set ghost-blog MAIL_AWS_ACCESS_KEY=(the aws access key)
+dokku config:set ghost-blog MAIL_AWS_SECRET_KEY=(the aws secret key)
+```
+
+**SES (alternative)**
+
+```
+dokku config:set ghost-blog MAIL_DRIVER=ses
+dokku config:set ghost-blog MAIL_SERVER=ses.example.com
+dokku config:set ghost-blog MAIL_PORT=465
+dokku config:set ghost-blog MAIL_USER=ghost@example.com
+dokku config:set ghost-blog MAIL_PASSWORD=(the ses email password)
+```
+
+**Gmail**
+
+```
+dokku config:set ghost-blog MAIL_DRIVER=gmail
+dokku config:set ghost-blog MAIL_USER=ghost@gmail.com
+dokku config:set ghost-blog MAIL_PASSWORD=(your gmail password)
+```
