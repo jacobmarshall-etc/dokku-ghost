@@ -7,7 +7,8 @@ var path = require('path'),
     env = process.env,
     database,
     mail,
-    config;
+    config,
+    paths;
 
 if (env.DATABASE_URL) {
     var dbUrl = url.parse(env.DATABASE_URL),
@@ -117,6 +118,11 @@ mail.from = env.MAIL_FROM;
 // Turn off database debug mode
 database.debug = false;
 
+// Configure the content path (seeing as it's a mount)
+paths = {
+    contentPath: path.join(__dirname, 'content')
+};
+
 config = {
     // ### Production
     // When running Ghost in the wild, use the production environment
@@ -125,6 +131,7 @@ config = {
         url: env.SITE_URL || 'http://my-ghost-blog.com',
         mail: mail,
         database: database,
+        paths: paths,
         server: {
             // Host to be passed to node's `net.Server#listen()`
             host: '0.0.0.0',

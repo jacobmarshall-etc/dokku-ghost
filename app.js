@@ -21,10 +21,7 @@ function contains (arr, items) {
 
 function start () {
     ghost({
-        config: configFile,
-        paths: {
-            contentPath: contentPath
-        }
+        config: configFile
     }).then(function (server) {
         server.start();
     });
